@@ -1,7 +1,5 @@
 #pragma once
 
-#include <memory>
-
 #include "Game.h"
 
 enum class ObjectType
@@ -25,7 +23,6 @@ public:
 	virtual Vec2 GetVelocity() const { return m_Velocity; }
 	virtual Vec2 GetSize() const { return m_Size; }
 	virtual bool GetIsAlive() const { return m_IsAlive; }
-
 
 	virtual bool OnUserUpdate(float fElapsedTime) { return true; };
 	virtual void SetLocation(const Vec2& location);

@@ -32,4 +32,3 @@ private:
 	std::weak_ptr<Pawn> m_Player;
 	std::vector<std::shared_ptr<Object>> m_Objects;
 };
-

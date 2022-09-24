@@ -43,7 +43,5 @@ struct Vec2
 		return Vec2{ m_X * other.m_X, m_Y * other.m_Y };
 	}
 
-
 	float m_X, m_Y;
 };
-
