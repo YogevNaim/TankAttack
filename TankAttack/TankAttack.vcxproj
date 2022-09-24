@@ -152,6 +152,7 @@
     <ClCompile Include="src\classes\Object.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\classes\Tank.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dependencies\olcConsoleGameEngine\olcConsoleGameEngine.h" />
@@ -159,6 +160,7 @@
     <ClInclude Include="src\classes\Object.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\utils\Math.h" />
+    <ClInclude Include="src\classes\Tank.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

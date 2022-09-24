@@ -10,7 +10,7 @@ Pawn::~Pawn()
 bool Pawn::OnUserUpdate(float fElapsedTime)
 {
 	
-	// Handle physics
+	// Handle pawn movement
 	UpdateMovement(fElapsedTime);
 
 	return true;
@@ -31,7 +31,6 @@ void Pawn::UpdateMovement(float fElapsedTime)
 			// Pawn to object collision
 			if (Object::SquareObjectCollision(*this, *object, newLocation)) return;
 		}
-
 		SetLocation(newLocation);
 	}
 }

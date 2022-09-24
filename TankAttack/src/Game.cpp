@@ -1,6 +1,6 @@
 #include "Game.h"
 
-#include "classes/Pawn.h"
+#include "classes/Tank.h"
 
 Game::Game()
 {
@@ -36,7 +36,9 @@ bool Game::OnUserUpdate(float fElapsedTime)
 	
 	// Handle inputs
 	if (!m_Player.expired())
+	{
 		HandlePlayerMoveInputs();
+	}
 
 	// Update
 	for (auto object : m_Objects)
@@ -56,23 +58,20 @@ bool Game::OnUserUpdate(float fElapsedTime)
 void Game::HandlePlayerMoveInputs()
 {
 	Vec2 input{};
-
+	// Single axis input
 	if (m_keys[VK_LEFT].bHeld)
 	{
 		input.m_X += -1.f;
 	}
-
-	if (m_keys[VK_RIGHT].bHeld)
+	else if (m_keys[VK_RIGHT].bHeld)
 	{
 		input.m_X += 1.f;
 	}
-
-	if (m_keys[VK_UP].bHeld)
+	else if (m_keys[VK_UP].bHeld)
 	{
 		input.m_Y += -1.f;
 	}
-
-	if (m_keys[VK_DOWN].bHeld)
+	else if (m_keys[VK_DOWN].bHeld)
 	{
 		input.m_Y += 1.f;
 	}
@@ -87,7 +86,7 @@ void Game::ResetGame()
 	m_Objects.clear();
 
 	// Spawn new player
-	std::shared_ptr<Pawn> newPlayer = std::make_shared<Pawn>(*this, Vec2{ScreenWidth() / 2.f, ScreenHeight() / 2.f}, Vec2{0.f, 0.f}, Vec2{5.f, 5.f}, ObjectType::PLAYER ,COLOUR::FG_CYAN);
+	std::shared_ptr<Tank> newPlayer = std::make_shared<Tank>(*this, Vec2{ScreenWidth() / 2.f, ScreenHeight() / 2.f}, Vec2{0.f, 0.f}, Vec2{6.f, 6.f}, ObjectType::PLAYER ,COLOUR::FG_CYAN);
 	m_Objects.push_back(newPlayer);
 	m_Player = newPlayer;
 

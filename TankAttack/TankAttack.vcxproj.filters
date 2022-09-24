@@ -30,6 +30,9 @@
     <ClCompile Include="src\classes\Pawn.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\classes\Tank.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dependencies\olcConsoleGameEngine\olcConsoleGameEngine.h">
@@ -45,6 +48,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\classes\Pawn.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\classes\Tank.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

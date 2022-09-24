@@ -14,7 +14,7 @@ class Object
 {
 public:
 	Object(Game& game, Vec2 location, Vec2 velocity, Vec2 size, ObjectType type, COLOUR color = COLOUR::FG_WHITE, bool isAlive = true);
-	~Object();
+	virtual ~Object();
 
 	virtual void Draw();
 

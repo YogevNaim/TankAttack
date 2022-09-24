@@ -34,7 +34,6 @@ bool Object::SquareObjectCollision(const Object& A, const Object& B, const Vec2&
 	{
 		return true;
 	}
-
 	return false;
 }
 

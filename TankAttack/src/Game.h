@@ -4,7 +4,7 @@
 #include "utils/Math.h"
 
 class Object;
-class Pawn;
+class Tank;
 
 class Game : public olcConsoleGameEngineOOP
 {
@@ -29,6 +29,6 @@ private:
 	const short m_WindowHeight = 120;
 	const short m_FontSize = 8;
 
-	std::weak_ptr<Pawn> m_Player;
+	std::weak_ptr<Tank> m_Player;
 	std::vector<std::shared_ptr<Object>> m_Objects;
 };
