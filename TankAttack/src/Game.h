@@ -12,11 +12,14 @@ public:
 	Game();
 	~Game();
 
-	// olcConsoleGameEngine
+	std::vector<std::shared_ptr<Object>> GetObjects() const { return m_Objects; };
 
 protected:
+	// olcConsoleGameEngine
 	virtual bool OnUserCreate() override;
 	virtual bool OnUserUpdate(float fElapsedTime) override;
+	
+	// Game
 	void HandlePlayerMoveInputs();
 	void ResetGame();
 
@@ -27,6 +30,6 @@ private:
 	const short m_FontSize = 8;
 
 	std::weak_ptr<Pawn> m_Player;
-	std::vector<std::shared_ptr<Object>> m_Object;
+	std::vector<std::shared_ptr<Object>> m_Objects;
 };
 

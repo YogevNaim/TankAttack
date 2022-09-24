@@ -2,8 +2,8 @@
 
 #include "olcConsoleGameEngine.h"
 
-Object::Object(Game& game, Vec2 location, Vec2 velocity, Vec2 size, COLOUR color, bool isAlive)
-	: m_Game(&game), m_Location(location), m_Velocity(velocity), m_Size(size),m_Color(color), m_IsAlive(isAlive) {}
+Object::Object(Game& game, Vec2 location, Vec2 velocity, Vec2 size, ObjectType type, COLOUR color, bool isAlive)
+	: m_Game(&game), m_Location(location), m_Velocity(velocity), m_Size(size), m_Type(type), m_Color(color), m_IsAlive(isAlive) {}
 
 Object::~Object()
 {
@@ -14,13 +14,28 @@ void Object::Draw()
 	Game* game = GetGameRef();
 	if (game)
 	{
- 		game->Fill(m_Location.m_X - m_Size.m_X / 2, m_Location.m_Y - m_Size.m_Y / 2, m_Location.m_X + m_Size.m_X / 2, m_Location.m_Y + m_Size.m_Y / 2, (wchar_t)PIXEL_TYPE::PIXEL_SOLID, (short)m_Color);
+ 		game->Fill((int)m_Location.m_X - (int)m_Size.m_X / 2, (int)m_Location.m_Y - (int)m_Size.m_Y / 2,
+			(int)m_Location.m_X + (int)m_Size.m_X / 2, (int)m_Location.m_Y + (int)m_Size.m_Y / 2,
+			(wchar_t)PIXEL_TYPE::PIXEL_SOLID, (short)m_Color);
 	}
 }
 
 void Object::SetVelocity(const Vec2& velocity)
 {
 	m_Velocity = velocity;
+}
+
+bool Object::SquareObjectCollision(const Object& A, const Object& B, const Vec2& location)
+{
+	if ((int)location.m_X + (int)A.GetSize().m_X / 2 > (int)B.GetLocation().m_X - (int)B.GetSize().m_X / 2 &&
+		(int)location.m_X - (int)A.GetSize().m_X / 2 < (int)B.GetLocation().m_X + (int)B.GetSize().m_X / 2 &&
+		(int)location.m_Y + (int)A.GetSize().m_Y / 2 > (int)B.GetLocation().m_Y - (int)B.GetSize().m_Y / 2 &&
+		(int)location.m_Y - (int)A.GetSize().m_Y / 2 < (int)B.GetLocation().m_Y + (int)B.GetSize().m_Y / 2)
+	{
+		return true;
+	}
+
+	return false;
 }
 
 void Object::SetLocation(const Vec2& location)

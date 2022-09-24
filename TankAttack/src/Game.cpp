@@ -39,13 +39,13 @@ bool Game::OnUserUpdate(float fElapsedTime)
 		HandlePlayerMoveInputs();
 
 	// Update
-	for (auto object : m_Object)
+	for (auto object : m_Objects)
 	{
 		object->OnUserUpdate(fElapsedTime);
 	}
 
 	// Draw
-	for (auto object : m_Object)
+	for (auto object : m_Objects)
 	{
 		object->Draw();
 	}
@@ -84,20 +84,20 @@ void Game::HandlePlayerMoveInputs()
 void Game::ResetGame()
 {
 	// This will also destroy the player reference since it's a weak_ptr
-	m_Object.clear();
+	m_Objects.clear();
 
 	// Spawn new player
-	std::shared_ptr<Pawn> newPlayer = std::make_shared<Pawn>(*this, Vec2{ScreenWidth() / 2.f, ScreenHeight() / 2.f}, Vec2{0.f, 0.f}, Vec2{5.f, 5.f}, COLOUR::FG_CYAN);
-	m_Object.push_back(newPlayer);
+	std::shared_ptr<Pawn> newPlayer = std::make_shared<Pawn>(*this, Vec2{ScreenWidth() / 2.f, ScreenHeight() / 2.f}, Vec2{0.f, 0.f}, Vec2{5.f, 5.f}, ObjectType::PLAYER ,COLOUR::FG_CYAN);
+	m_Objects.push_back(newPlayer);
 	m_Player = newPlayer;
 
 	// Spawn borders
-	std::shared_ptr<Object> leftBorder = std::make_shared<Pawn>(*this, Vec2{ 1.f ,ScreenHeight() / 2.f }, Vec2{ 0.f, 0.f }, Vec2{ 1.f,  (float)ScreenHeight() }, COLOUR::FG_GREY);
-	m_Object.push_back(leftBorder);
-	std::shared_ptr<Object> rightBorder = std::make_shared<Pawn>(*this, Vec2{ (float)ScreenWidth() ,ScreenHeight() / 2.f }, Vec2{ 0.f, 0.f }, Vec2{ 1.f,  (float)ScreenHeight() }, COLOUR::FG_GREY);
-	m_Object.push_back(rightBorder);
-	std::shared_ptr<Object> topBorder = std::make_shared<Pawn>(*this, Vec2{ (float)ScreenWidth() / 2.f ,1.f }, Vec2{ 0.f, 0.f }, Vec2{ (float)ScreenWidth(),  1.f }, COLOUR::FG_GREY);
-	m_Object.push_back(topBorder);
-	std::shared_ptr<Object> BottomBorder = std::make_shared<Pawn>(*this, Vec2{ (float)ScreenWidth() / 2.f ,(float)ScreenHeight() }, Vec2{ 0.f, 0.f }, Vec2{ (float)ScreenWidth(),  1.f }, COLOUR::FG_GREY);
-	m_Object.push_back(BottomBorder);
+	std::shared_ptr<Object> leftBorder = std::make_shared<Object>(*this, Vec2{ 1.f ,ScreenHeight() / 2.f }, Vec2{ 0.f, 0.f }, Vec2{ 2.f,  (float)ScreenHeight() }, ObjectType::BORDER, COLOUR::FG_GREY);
+	m_Objects.push_back(leftBorder);
+	std::shared_ptr<Object> rightBorder = std::make_shared<Object>(*this, Vec2{ (float)ScreenWidth() -1.f ,ScreenHeight() / 2.f }, Vec2{ 0.f, 0.f }, Vec2{ 2.f,  (float)ScreenHeight() }, ObjectType::BORDER, COLOUR::FG_GREY);
+	m_Objects.push_back(rightBorder);
+	std::shared_ptr<Object> topBorder = std::make_shared<Object>(*this, Vec2{ (float)ScreenWidth() / 2.f ,1.f }, Vec2{ 0.f, 0.f }, Vec2{ (float)ScreenWidth(),  2.f }, ObjectType::BORDER, COLOUR::FG_GREY);
+	m_Objects.push_back(topBorder);
+	std::shared_ptr<Object> BottomBorder = std::make_shared<Object>(*this, Vec2{ (float)ScreenWidth() / 2.f ,(float)ScreenHeight() -1.f }, Vec2{ 0.f, 0.f }, Vec2{ (float)ScreenWidth(),  2.f }, ObjectType::BORDER, COLOUR::FG_GREY);
+	m_Objects.push_back(BottomBorder);
 }
