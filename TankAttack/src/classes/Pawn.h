@@ -5,8 +5,7 @@
 class Pawn : public Object
 {
 public:
-	Pawn();
-	Pawn(Vec2 location, Vec2 velocity, Vec2 size ,bool isAlive = true);
+	Pawn(Game& game, Vec2 location, Vec2 velocity, Vec2 size, COLOUR color = COLOUR::FG_WHITE, bool isAlive = true);
 	~Pawn();
 
 	virtual bool OnUserUpdate(float fElapsedTime)  override;
@@ -15,4 +14,3 @@ protected:
 	virtual void UpdateMovement(float fElapsedTime);
 
 };
-
