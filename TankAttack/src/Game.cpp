@@ -86,7 +86,7 @@ void Game::ResetGame()
 	m_Objects.clear();
 
 	// Spawn new player
-	std::shared_ptr<Tank> newPlayer = std::make_shared<Tank>(*this, Vec2{ScreenWidth() / 2.f, ScreenHeight() / 2.f}, Vec2{0.f, 0.f}, Vec2{6.f, 6.f}, ObjectType::PLAYER ,COLOUR::FG_CYAN);
+	std::shared_ptr<Tank> newPlayer = std::make_shared<Tank>(*this, Vec2{ ScreenWidth() / 2.f, ScreenHeight() / 2.f }, Vec2{ 0.f, 0.f }, Vec2{ 6.f, 6.f }, ObjectType::PLAYER, Vec2{ 1.f, 0.f }, COLOUR::FG_CYAN);
 	m_Objects.push_back(newPlayer);
 	m_Player = newPlayer;
 

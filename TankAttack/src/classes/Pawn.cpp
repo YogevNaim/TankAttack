@@ -1,7 +1,7 @@
 #include "Pawn.h"
 
-Pawn::Pawn(Game& game, Vec2 location, Vec2 velocity, Vec2 size, ObjectType type, COLOUR color, bool isAlive)
-	: Object(game, location, velocity, size, type, color, isAlive) {}
+Pawn::Pawn(Game& game, Vec2 location, Vec2 velocity, Vec2 size, ObjectType type, Vec2 fwdVec, COLOUR color , bool isAlive)
+	: Object(game, location, velocity, size, type, color, isAlive), m_FwdVector(fwdVec) {}
 
 Pawn::~Pawn()
 {
@@ -20,6 +20,8 @@ void Pawn::UpdateMovement(float fElapsedTime)
 {
 	if (m_Velocity.m_X != 0.f || m_Velocity.m_Y != 0.f)
 	{
+		m_FwdVector = m_Velocity;
+
 		Vec2 newLocation = m_Location + m_Velocity * fElapsedTime * m_SpeedMultiplier;
 		
 		// Check new location is valid

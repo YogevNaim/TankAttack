@@ -1,8 +1,8 @@
 #include "Tank.h"
 #include <algorithm>
 
-Tank::Tank(Game& game, Vec2 location, Vec2 velocity, Vec2 size, ObjectType type, COLOUR color, bool isAlive)
-	: Pawn(game, location, velocity, size, type, color, isAlive) {}
+Tank::Tank(Game& game, Vec2 location, Vec2 velocity, Vec2 size, ObjectType type, Vec2 fwdVec, COLOUR color, bool isAlive)
+	: Pawn(game, location, velocity, size, type, fwdVec, color, isAlive) {}
 
 void Tank::Draw()
 {
@@ -21,14 +21,5 @@ void Tank::Draw()
 		int y2 = std::max<int>((int)m_Location.m_Y + 1, (int)turretEndLocation.m_Y - 1);
 		
 		game->Fill(x1, y1, x2, y2, (wchar_t)PIXEL_TYPE::PIXEL_SOLID);
-	}
-}
-
-void Tank::UpdateMovement(float fElapsedTime)
-{
-	Pawn::UpdateMovement(fElapsedTime);
-	if (m_Velocity.m_X != 0.f || m_Velocity.m_Y != 0.f)
-	{
-		m_FwdVector = m_Velocity;
 	}
 }
