@@ -25,16 +25,22 @@ void Object::SetVelocity(const Vec2& velocity)
 	m_Velocity = velocity;
 }
 
-bool Object::SquareObjectCollision(const Object& A, const Object& B, const Vec2& location)
+bool Object::SquareObjectCollision(Object& A, Object& B, const Vec2& location)
 {
 	if ((int)location.m_X + (int)A.GetSize().m_X / 2 > (int)B.GetLocation().m_X - (int)B.GetSize().m_X / 2 &&
 		(int)location.m_X - (int)A.GetSize().m_X / 2 < (int)B.GetLocation().m_X + (int)B.GetSize().m_X / 2 &&
 		(int)location.m_Y + (int)A.GetSize().m_Y / 2 > (int)B.GetLocation().m_Y - (int)B.GetSize().m_Y / 2 &&
 		(int)location.m_Y - (int)A.GetSize().m_Y / 2 < (int)B.GetLocation().m_Y + (int)B.GetSize().m_Y / 2)
 	{
+		A.OnCollision(B, location);
+		B.OnCollision(A, location);
 		return true;
 	}
 	return false;
+}
+
+void Object::OnCollision(Object& other, const Vec2& location)
+{
 }
 
 void Object::SetLocation(const Vec2& location)

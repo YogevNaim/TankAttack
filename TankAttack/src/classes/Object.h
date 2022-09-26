@@ -7,6 +7,7 @@ enum class ObjectType
 	NONE = 0,
 	BORDER,
 	PLAYER,
+	PROJECTILE,
 	ENEMY
 };
 
@@ -28,7 +29,8 @@ public:
 	virtual void SetLocation(const Vec2& location);
 	virtual void SetVelocity(const Vec2& velocity);
 	
-	static bool SquareObjectCollision(const Object& A, const Object& B, const Vec2& location);
+	static bool SquareObjectCollision(Object& A, Object& B, const Vec2& location);
+	virtual void OnCollision(Object& other,const Vec2& location);
 
 protected:
 	Game* GetGameRef() const { return m_Game; }
