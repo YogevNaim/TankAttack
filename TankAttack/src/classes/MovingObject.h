@@ -2,11 +2,11 @@
 
 #include "Object.h"
 
-class Pawn : public Object
+class MovingObject : public Object
 {
 public:
-	Pawn(Game& game, Vec2 location, Vec2 velocity, Vec2 size, ObjectType type, Vec2 fwdVec, COLOUR color = COLOUR::FG_WHITE, bool isAlive = true);
-	~Pawn();
+	MovingObject(Game& game, Vec2 location, Vec2 velocity, Vec2 size, ObjectType type, Vec2 fwdVec, COLOUR color = COLOUR::FG_WHITE, bool isAlive = true);
+	~MovingObject();
 
 	virtual bool OnUserUpdate(float fElapsedTime)  override;
 

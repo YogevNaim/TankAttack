@@ -148,7 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="dependencies\olcConsoleGameEngine\olcConsoleGameEngine.cpp" />
-    <ClCompile Include="src\classes\Pawn.cpp" />
+    <ClCompile Include="src\classes\MovingObject.cpp" />
     <ClCompile Include="src\classes\Object.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\Main.cpp" />
@@ -156,7 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dependencies\olcConsoleGameEngine\olcConsoleGameEngine.h" />
-    <ClInclude Include="src\classes\Pawn.h" />
+    <ClInclude Include="src\classes\MovingObject.h" />
     <ClInclude Include="src\classes\Object.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\utils\Math.h" />

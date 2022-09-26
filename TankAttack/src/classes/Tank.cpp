@@ -2,14 +2,14 @@
 #include <algorithm>
 
 Tank::Tank(Game& game, Vec2 location, Vec2 velocity, Vec2 size, ObjectType type, Vec2 fwdVec, COLOUR color, bool isAlive)
-	: Pawn(game, location, velocity, size, type, fwdVec, color, isAlive) {}
+	: MovingObject(game, location, velocity, size, type, fwdVec, color, isAlive) {}
 
 void Tank::Draw()
 {
 	if (!GetIsAlive()) return;
 
 	// Draw body
-	Pawn::Draw();
+	MovingObject::Draw();
 	
 	// Draw turret
 	Game* game = GetGameRef();

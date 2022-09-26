@@ -27,7 +27,7 @@
     <ClCompile Include="src\classes\Object.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\classes\Pawn.cpp">
+    <ClCompile Include="src\classes\MovingObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\classes\Tank.cpp">
@@ -47,7 +47,7 @@
     <ClInclude Include="src\classes\Object.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\classes\Pawn.h">
+    <ClInclude Include="src\classes\MovingObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\classes\Tank.h">
