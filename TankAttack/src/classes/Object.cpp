@@ -11,7 +11,9 @@ Object::~Object()
 
 void Object::Draw()
 {
-	Game* game = GetGameRef();
+	if (!m_IsAlive) return;
+
+	Game* game = m_Game;
 	if (game)
 	{
  		game->Fill((int)m_Location.m_X - (int)m_Size.m_X / 2, (int)m_Location.m_Y - (int)m_Size.m_Y / 2,

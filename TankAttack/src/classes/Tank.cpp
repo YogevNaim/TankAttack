@@ -6,6 +6,8 @@ Tank::Tank(Game& game, Vec2 location, Vec2 velocity, Vec2 size, ObjectType type,
 
 void Tank::Draw()
 {
+	if (!GetIsAlive()) return;
+
 	// Draw body
 	Pawn::Draw();
 	
@@ -13,12 +15,13 @@ void Tank::Draw()
 	Game* game = GetGameRef();
 	if (game)
 	{
-		Vec2 turretEndLocation = m_FwdVector * 6.f + m_Location;
+		Vec2 location = GetLocation();
+		Vec2 turretEndLocation = GetFwdVector() * 6.f + location;
 
-   		int x1 = std::min<int>((int)m_Location.m_X - 1, (int)turretEndLocation.m_X + 1);
-		int x2 = std::max<int>((int)m_Location.m_X + 1, (int)turretEndLocation.m_X - 1);
-		int y1 = std::min<int>((int)m_Location.m_Y - 1, (int)turretEndLocation.m_Y + 1);
-		int y2 = std::max<int>((int)m_Location.m_Y + 1, (int)turretEndLocation.m_Y - 1);
+   		int x1 = std::min<int>((int)location.m_X - 1, (int)turretEndLocation.m_X + 1);
+		int x2 = std::max<int>((int)location.m_X + 1, (int)turretEndLocation.m_X - 1);
+		int y1 = std::min<int>((int)location.m_Y - 1, (int)turretEndLocation.m_Y + 1);
+		int y2 = std::max<int>((int)location.m_Y + 1, (int)turretEndLocation.m_Y - 1);
 		
 		game->Fill(x1, y1, x2, y2, (wchar_t)PIXEL_TYPE::PIXEL_SOLID);
 	}

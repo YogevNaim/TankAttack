@@ -18,14 +18,15 @@ bool Pawn::OnUserUpdate(float fElapsedTime)
 
 void Pawn::UpdateMovement(float fElapsedTime)
 {
-	if (m_Velocity.m_X != 0.f || m_Velocity.m_Y != 0.f)
+	Vec2 velocity = GetVelocity();
+	if (velocity.m_X != 0.f || velocity.m_Y != 0.f)
 	{
-		m_FwdVector = m_Velocity;
+		m_FwdVector = velocity;
 
-		Vec2 newLocation = m_Location + m_Velocity * fElapsedTime * m_SpeedMultiplier;
+		Vec2 newLocation = GetLocation() + velocity * fElapsedTime * GetSpeedMultiplier();
 		
 		// Check new location is valid
-		for (auto object : m_Game->GetObjects())
+		for (auto object : GetGameRef()->GetObjects())
 		{
 			// Pawn to pawn collision
 			if (object->GetType() == ObjectType::PLAYER) continue;

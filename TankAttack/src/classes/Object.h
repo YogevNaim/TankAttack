@@ -34,7 +34,9 @@ public:
 
 protected:
 	Game* GetGameRef() const { return m_Game; }
+	float GetSpeedMultiplier() const { return m_SpeedMultiplier; }
 
+private:
 	ObjectType m_Type;
 	Vec2 m_Location;
 	Vec2 m_Velocity;

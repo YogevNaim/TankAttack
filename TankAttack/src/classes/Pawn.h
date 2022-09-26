@@ -10,7 +10,10 @@ public:
 
 	virtual bool OnUserUpdate(float fElapsedTime)  override;
 
+	Vec2 GetFwdVector() const { return m_FwdVector; }
+
 protected:
 	virtual void UpdateMovement(float fElapsedTime);
+
 	Vec2 m_FwdVector;
 };

@@ -57,6 +57,9 @@ bool Game::OnUserUpdate(float fElapsedTime)
 
 void Game::HandlePlayerMoveInputs()
 {
+	auto player = m_Player.lock();
+	if (!player->GetIsAlive()) return;
+
 	Vec2 input{};
 	// Single axis input
 	if (m_keys[VK_LEFT].bHeld)
@@ -76,7 +79,6 @@ void Game::HandlePlayerMoveInputs()
 		input.m_Y += 1.f;
 	}
 	
-	auto player = m_Player.lock();
 	player->SetVelocity(input);
 }
 
