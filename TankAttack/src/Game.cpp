@@ -1,6 +1,7 @@
 #include "Game.h"
 
 #include "classes/Tank.h"
+#include "classes/Projectile.h"
 
 Game::Game()
 {
@@ -21,6 +22,16 @@ Game::~Game()
 
 }
 
+void Game::SpawnProjectile(const Tank& shooter)
+{
+	Vec2 fwdVec = shooter.GetFwdVector();
+	Vec2 spawnLocation = shooter.GetLocation() + fwdVec * 3.f;
+	Vec2 velocity = fwdVec;
+
+	std::shared_ptr<Projectile> newProjectile = std::make_shared<Projectile>(*this, spawnLocation, velocity);
+	m_Projectiles.push_back(newProjectile);
+}
+
 bool Game::OnUserCreate()
 {
 	// Init
@@ -38,6 +49,7 @@ bool Game::OnUserUpdate(float fElapsedTime)
 	if (!m_Player.expired())
 	{
 		HandlePlayerMoveInputs();
+		HandleShootingInputs();
 	}
 
 	// Update
@@ -45,12 +57,22 @@ bool Game::OnUserUpdate(float fElapsedTime)
 	{
 		object->OnUserUpdate(fElapsedTime);
 	}
+	for (auto projectile : m_Projectiles)
+	{
+		projectile->OnUserUpdate(fElapsedTime);
+	}
 
 	// Draw
 	for (auto object : m_Objects)
 	{
 		object->Draw();
 	}
+	for (auto projectile : m_Projectiles)
+	{
+		projectile->Draw();
+	}
+
+	// TODO: Dead Projectile and Objects cleanup from vectors
 
 	return true;
 }
@@ -80,6 +102,19 @@ void Game::HandlePlayerMoveInputs()
 	}
 	
 	player->SetVelocity(input);
+}
+
+void Game::HandleShootingInputs()
+{
+	auto player = m_Player.lock();
+	if (!player->GetIsAlive()) return;
+
+	if (m_keys[VK_SPACE].bHeld && player->CanShoot())
+	{
+		// TODO: Fire
+		player->Shoot();
+		DrawString(10, 10, L"Shoot", COLOUR::FG_CYAN);
+	}
 }
 
 void Game::ResetGame()

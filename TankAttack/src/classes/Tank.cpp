@@ -26,3 +26,31 @@ void Tank::Draw()
 		game->Fill(x1, y1, x2, y2, (wchar_t)PIXEL_TYPE::PIXEL_SOLID);
 	}
 }
+
+bool Tank::OnUserUpdate(float fElapsedTime)
+{
+	UpdateCanShoot(fElapsedTime);
+
+	return MovingObject::OnUserUpdate(fElapsedTime);
+}
+
+void Tank::OnCollision(Object& other, const Vec2& location)
+{
+	// TODO: Collision response
+}
+
+void Tank::Shoot()
+{
+	m_LastShoot = 0.f;
+	Game* game = GetGameRef();
+	if (game)
+	{
+		game->SpawnProjectile(*this);
+	}
+}
+
+void Tank::UpdateCanShoot(float fElapsedTime)
+{
+	m_LastShoot += fElapsedTime;
+	m_CanShoot = m_LastShoot - m_ShootInterval >= 0;
+}
