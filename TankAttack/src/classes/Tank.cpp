@@ -1,8 +1,8 @@
 #include "Tank.h"
 #include <algorithm>
 
-Tank::Tank(Game& game, Vec2 location, Vec2 velocity, Vec2 size, ObjectType type, Vec2 fwdVec, COLOUR color, bool isAlive)
-	: MovingObject(game, location, velocity, size, type, fwdVec, color, isAlive) {}
+Tank::Tank(Game& game, unsigned int id, Vec2 location, Vec2 velocity, Vec2 size, ObjectType type, Vec2 fwdVec, COLOUR color, bool isAlive)
+	: MovingObject(game, location, velocity, size, type, fwdVec, color, isAlive), m_id(id) {}
 
 void Tank::Draw()
 {

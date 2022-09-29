@@ -133,7 +133,7 @@ void Game::ResetGame()
 	m_Objects.clear();
 
 	// Spawn new player
-	std::shared_ptr<Tank> newPlayer = std::make_shared<Tank>(*this, Vec2{ ScreenWidth() / 2.f, ScreenHeight() / 2.f }, Vec2{ 0.f, 0.f }, Vec2{ 6.f, 6.f }, ObjectType::PLAYER, Vec2{ 1.f, 0.f }, COLOUR::FG_CYAN);
+	std::shared_ptr<Tank> newPlayer = std::make_shared<Tank>(*this, 0,Vec2{ ScreenWidth() / 2.f, ScreenHeight() / 2.f }, Vec2{ 0.f, 0.f }, Vec2{ 6.f, 6.f }, ObjectType::PLAYER, Vec2{ 1.f, 0.f }, COLOUR::FG_CYAN);
 	m_Objects.push_back(newPlayer);
 	m_Player = newPlayer;
 
@@ -148,6 +148,6 @@ void Game::ResetGame()
 	m_Objects.push_back(BottomBorder);
 
 	// Spawn test enemy
-	std::shared_ptr<Tank> enemy = std::make_shared<Tank>(*this, Vec2{ ScreenWidth() -10.f, ScreenHeight() / 2.f }, Vec2{ 0.f, 0.f }, Vec2{ 6.f, 6.f }, ObjectType::ENEMY, Vec2{ -1.f, 0.f }, COLOUR::FG_DARK_YELLOW);
+	std::shared_ptr<Tank> enemy = std::make_shared<Tank>(*this, 1,Vec2{ ScreenWidth() -10.f, ScreenHeight() / 2.f }, Vec2{ 0.f, 0.f }, Vec2{ 6.f, 6.f }, ObjectType::ENEMY, Vec2{ -1.f, 0.f }, COLOUR::FG_DARK_YELLOW);
 	m_Objects.push_back(enemy);
 }
