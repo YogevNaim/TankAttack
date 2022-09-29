@@ -22,13 +22,13 @@ Game::~Game()
 
 }
 
-void Game::SpawnProjectile(const Tank& shooter)
+void Game::SpawnProjectile(Tank& shooter)
 {
 	Vec2 fwdVec = shooter.GetFwdVector();
 	Vec2 spawnLocation = shooter.GetLocation() + fwdVec * 3.f;
 	Vec2 velocity = fwdVec;
 
-	std::shared_ptr<Projectile> newProjectile = std::make_shared<Projectile>(*this, spawnLocation, velocity, Vec2{2.f, 2.f}, ObjectType::PROJECTILE, fwdVec);
+	std::shared_ptr<Projectile> newProjectile = std::make_shared<Projectile>(*this, spawnLocation, velocity, Vec2{2.f, 2.f}, ObjectType::PROJECTILE, fwdVec, shooter);
 	m_Projectiles.push_back(newProjectile);
 }
 
@@ -65,14 +65,24 @@ bool Game::OnUserUpdate(float fElapsedTime)
 	// Draw
 	for (auto object : m_Objects)
 	{
-		object->Draw();
+		if (object->GetIsAlive())
+			object->Draw();
 	}
 	for (auto projectile : m_Projectiles)
 	{
-		projectile->Draw();
+		if (projectile->GetIsAlive())
+			projectile->Draw();
 	}
 
-	// TODO: Dead Projectile and Objects cleanup from vectors
+	// Dead Projectile cleanup from vectors
+	for (int i = 0; i < m_Projectiles.size(); i++)
+	{
+		if (!m_Projectiles[i]->GetIsAlive())
+		{
+			m_Projectiles.erase(m_Projectiles.begin() + i);
+		}
+	}
+
 
 	return true;
 }
@@ -136,4 +146,8 @@ void Game::ResetGame()
 	m_Objects.push_back(topBorder);
 	std::shared_ptr<Object> BottomBorder = std::make_shared<Object>(*this, Vec2{ (float)ScreenWidth() / 2.f ,(float)ScreenHeight() -1.f }, Vec2{ 0.f, 0.f }, Vec2{ (float)ScreenWidth(),  2.f }, ObjectType::BORDER, COLOUR::FG_GREY);
 	m_Objects.push_back(BottomBorder);
+
+	// Spawn test enemy
+	std::shared_ptr<Tank> enemy = std::make_shared<Tank>(*this, Vec2{ ScreenWidth() -10.f, ScreenHeight() / 2.f }, Vec2{ 0.f, 0.f }, Vec2{ 6.f, 6.f }, ObjectType::ENEMY, Vec2{ -1.f, 0.f }, COLOUR::FG_DARK_YELLOW);
+	m_Objects.push_back(enemy);
 }

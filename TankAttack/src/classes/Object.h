@@ -25,9 +25,10 @@ public:
 	virtual Vec2 GetSize() const { return m_Size; }
 	virtual bool GetIsAlive() const { return m_IsAlive; }
 
-	virtual bool OnUserUpdate(float fElapsedTime) { return true; };
+	virtual bool OnUserUpdate(float fElapsedTime) { return true; }
 	virtual void SetLocation(const Vec2& location);
 	virtual void SetVelocity(const Vec2& velocity);
+	virtual void SetIsAlive(const bool isAlive) { m_IsAlive = isAlive; }
 	
 	static bool SquareObjectCollision(Object& A, Object& B, const Vec2& location);
 	virtual void OnCollision(Object& other,const Vec2& location);

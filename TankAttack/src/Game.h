@@ -14,7 +14,7 @@ public:
 	~Game();
 
 	std::vector<std::shared_ptr<Object>> GetObjects() const { return m_Objects; };
-	void SpawnProjectile(const Tank& shooter);
+	void SpawnProjectile(Tank& shooter);
 
 protected:
 	// olcConsoleGameEngine
