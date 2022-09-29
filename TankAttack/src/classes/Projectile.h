@@ -5,8 +5,9 @@
 class Projectile : public MovingObject
 {
 public:
-	Projectile(Game& game, Vec2 location, Vec2 velocity, Vec2 size = Vec2{1.f, 1.f}, ObjectType type = ObjectType::PROJECTILE, Vec2 fwdVec = Vec2{2.f, 2.f}, COLOUR color = COLOUR::FG_WHITE, bool isAlive = true);
+	Projectile(Game& game, Vec2 location, Vec2 velocity, Vec2 size, ObjectType type, Vec2 fwdVec, COLOUR color = COLOUR::FG_DARK_GREY, bool isAlive = true);
 	~Projectile() {}
 
 	virtual void OnCollision(Object& other, const Vec2& location) override;
+
 };

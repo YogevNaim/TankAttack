@@ -28,7 +28,7 @@ void Game::SpawnProjectile(const Tank& shooter)
 	Vec2 spawnLocation = shooter.GetLocation() + fwdVec * 3.f;
 	Vec2 velocity = fwdVec;
 
-	std::shared_ptr<Projectile> newProjectile = std::make_shared<Projectile>(*this, spawnLocation, velocity);
+	std::shared_ptr<Projectile> newProjectile = std::make_shared<Projectile>(*this, spawnLocation, velocity, Vec2{2.f, 2.f}, ObjectType::PROJECTILE, fwdVec);
 	m_Projectiles.push_back(newProjectile);
 }
 
