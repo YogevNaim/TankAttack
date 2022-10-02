@@ -21,6 +21,6 @@ protected:
 private:
 	unsigned int m_id = 0;
 	bool m_CanShoot = true;
-	float m_ShootInterval = 1.f;
+	float m_ShootInterval = 0.5f;
 	double m_LastShoot = 0;
 };

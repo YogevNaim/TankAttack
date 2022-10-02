@@ -121,9 +121,7 @@ void Game::HandleShootingInputs()
 
 	if (m_keys[VK_SPACE].bHeld && player->CanShoot())
 	{
-		// TODO: Fire
 		player->Shoot();
-		DrawString(10, 10, L"Shoot", COLOUR::FG_CYAN);
 	}
 }
 
