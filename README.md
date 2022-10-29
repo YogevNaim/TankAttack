@@ -8,7 +8,7 @@ Online multiplayer simplistic tank battle game.
 	- Rendering
 	- Base classes
 	- Input handling
-- Basic gamplay - **DONE**
+- Basic gampelay - **DONE**
 	- Collisions
 	- Tanks
 	- Projectiles
