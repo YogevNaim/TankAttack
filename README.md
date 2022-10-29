@@ -8,9 +8,10 @@ Online multiplayer simplistic tank battle game.
 	- Rendering
 	- Base classes
 	- Input handling
-- Basic gamplay
+- Basic gamplay - **DONE**
 	- Collisions
 	- Tanks
 	- Projectiles
+
 - Game loop - **TBD**
 - Multiplayer - **TBD**
